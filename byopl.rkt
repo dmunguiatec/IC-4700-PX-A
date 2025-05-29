@@ -5,7 +5,7 @@
 (require racket/trace)
 
 ;; Implementación del intérprete
-(define (?- consulta)
+(define (?- consulta programa)
   #f)
            
 ;; Casos de prueba
@@ -191,25 +191,25 @@
    "Consultas"
    (test-case "Consulta igual true"
               (check-equal?
-               (?- '(igual a a))
+               (?- '(igual a a) dbz)
                '((?x . a))))
    (test-case "Consulta igual false"
               (check-false
-               (?- '(igual a b))))
+               (?- '(igual a b) dbz)))
    (test-case "Consulta hecho"
               (check-true
                (same-elements?
-                (?- '(padre goku ?hijo))
+                (?- '(padre goku ?hijo) dbz)
                 '((?hijo . gohan) (?hijo . goten)))))
    (test-case "Consulta regla simple"
               (check-true
                (same-elements?
-                (?- '(progenitora ?x goten))
+                (?- '(progenitora ?x goten) dbz)
                 '((?x . goku) (?x . chichi)))))
    (test-case "Consulta regla recursiva"
               (check-true
                (same-elements?
-                (?- '(ancestra ?x pan))
+                (?- '(ancestra ?x pan) dbz)
                 '((?x . bardock) (?x . goku) (?x . gohan) (?x . chichi) (?x . videl)))))
    )
   )
