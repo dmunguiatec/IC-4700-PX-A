@@ -37,13 +37,13 @@ Nuestro intérprete funcionará sobre el REPL de DrRacket, y estará implementad
     (:- (ancestra ?x ?y) ((ancestra ?x ?p) (progenitora ?p ?y)))
     )
   )
-> (?- '(padre ?x pan))
+> (?- '(padre ?x pan) dbz)
 '((?x . gohan))
-> (?- '(progenitora ?x goten))
+> (?- '(progenitora ?x goten) dbz)
 '((?x . goku) (?x . chichi))
-> (?- '(igual a b))
+> (?- '(igual a b) dbz)
 #f
-> (?- '(igual a a))
+> (?- '(igual a a) dbz)
 '((?x . a))
 ```
 
