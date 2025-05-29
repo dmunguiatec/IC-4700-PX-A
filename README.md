@@ -55,7 +55,7 @@ Especificamos a continuación los elementos del lenguaje que vamos a implementar
 
 ### Variables
 
-Las variables se representan como un símbolo que inicia con signo de pregunta. Por ejemplo `'?x`, `'?y`, `'?mi-variable`.
+Las variables se representan como un símbolo que inicia con signo de pregunta. Por ejemplo `'?x`, `'?y`, `'?mi-variable`, `'?_1`.
 
 ### Hechos
 
@@ -100,9 +100,9 @@ Implementa el algoritmo de unificación y retorna la lista de asociaciones entre
 Por ejemplo
 
 ```scheme
-> (unificar '(ancestro ?x pan) '(ancestro ?x ?y) '())
+> (unificar '(ancestra ?x pan) '(ancestra ?x ?y) '())
 '((?x . ?_1) (?x . ?_1) (?y . pan))
-> (unificar '(igual a b) '(igual ?x ?x))
+> (unificar '(igual a b) '(igual ?x ?x) '())
 #f
 ```
 
@@ -136,8 +136,8 @@ Por ejemplo
 ```scheme
 > (instanciar '(padre ?p pan) '((?_1 . ?_2) (?x . ?_2) (?p . ?_3) (?y . ?_3)))
 '(padre ?_3 pan)
-> (instanciar '((ancestro ?x ?p) (padre ?p ?y)) '((?x . ?_1) (?x . ?_1) (?y . pan)))
-'((ancestro ?_1 ?p) (padre ?p pan))
+> (instanciar '((ancestra ?x ?p) (padre ?p ?y)) '((?x . ?_1) (?x . ?_1) (?y . pan)))
+'((ancestra ?_1 ?p) (padre ?p pan))
 ```
 
 ### Buscar
@@ -151,7 +151,7 @@ Implementa la búsqueda por *backtracking*. Calcula todas las soluciones posible
 Por ejemplo:
 
 ```
-> (buscar '(ancestro ?x pan) dbz '(?x) '())
+> (buscar '(ancestra ?x pan) dbz '(?x) '())
 '((?x . bardock) (?x . goku) (?x . gohan) (?x . chichi) (?x . videl))
 ```
 
@@ -244,6 +244,8 @@ DrRacket
 Se recomienda el uso de la función `trace` para observar la trazabilidad de llamadas entre funciones, particularmente
 
 ```scheme
+(require racket/trace)
+
 (trace unificar)
 (trace asociar)
 (trace instanciar)
@@ -262,7 +264,7 @@ Se recomienda el uso de la función `trace` para observar la trazabilidad de lla
 
 **Código producido** (50%)  
 - Hay producción de código para implementar los requerimientos funcionales (15%)
-- El código producido se apega al paradigma de orientación a objetos (15%)
+- El código producido se apega al paradigma funcional (15%)
 - El código producido pasa los casos de prueba (20%)
 
 **Defensa del proyecto** (50%)
