@@ -230,7 +230,7 @@
     (:- (progenitora ?x  ?y) ((padre ?x ?y)))
     (:- (progenitora ?x  ?y) ((madre ?x ?y)))
     (:- (ancestra ?x ?y) ((progenitora ?x ?y)))
-    (:- (ancestra ?x ?y) ((ancestra ?x ?p) (progenitora ?p ?y)))
+    (:- (ancestra ?x ?y) ((progenitora ?x ?p) (ancestra ?p ?y)))
     )
   )
 
